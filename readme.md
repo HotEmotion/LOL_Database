@@ -1,3 +1,8 @@
+  
+  
+  这个系统是大学大三下半学期ASP.net这门课的课程设计作品，以下是实验报告，即系统实现详情。
+  
+  
 摘要
 
 英雄联盟资料库系统为广大英雄联盟玩家提供了一个查询游戏数据、资料的平台。该系统界面炫酷，背景是游戏英雄人物原画视频，界面一开就有一股浓重的游戏文化气息。该系统的内容丰富，内容以文字、图片、视频、动画相结合的形式给玩家展示，便于玩家理解。该系统的数据齐全，关于游戏中所涉及的所有文化都有显示，可以查询到关于游戏的一切。而且该系统试试更新数据，官方游戏更新的同时，系统管理员也会及时更新，可以保证用户获得最新最全的资料。
@@ -20,7 +25,7 @@
 
 本系统功能包含了大部分功能，为用户提供了展示英雄列表功能以及展示英雄详细资料功能。针对用户的功能有注册和登录（已加密）功能。针对管理员的功能有对英雄列表信息的增加、删除、修改、查询，如下图：
 
-![](media/ba523e74aecef15405d2927c638cdff1.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/jiegou.jpg)
 
 ​								图 英雄联盟资料库系统结构图
 
@@ -34,7 +39,7 @@
 
 用来存储用户信息的表，如下图：
 
-![](media/124df7180613ac9085491266c86dd526.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/userTable.jpg)
 
 ​									图 用户信息表
 
@@ -42,15 +47,14 @@
 
 用来存储树形目录项目的表，如下图：
 
-![](media/36f456b9012f5334b2179496b99a28f2.png)
-
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/itemTable.jpg)
 ​										图 项目表
 
 ### 英雄资料表（Hero_Table）
 
 ### 用来存储英雄资料的表，ItemId是外键，与Item表主键对应，(部分)如下图：
 
-![](media/a0289abdf3b1f366a3982e30816f3fed.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/heroTable.jpg)
 
 ​									图 英雄资料表
 
@@ -61,7 +65,7 @@
 
 在Web.config的appSettings中配置字符连接串中的服务器和数据库，如图：
 
-![](media/c2d8bec71e08c321d46ec6d2ff01f967.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/config.jpg)
 
 ​								图 配置字符连接串
 
@@ -69,7 +73,7 @@
 
 使用RSA解密方法对已加密的用户名及密码解密，如图：
 
-![](media/f68e1d4044b17e76e0a2177640b28f90.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/config%20(2).jpg)
 
 ​								图 解密用户名和密码
 
@@ -82,8 +86,7 @@ SqlHelper类已将数据库连接、操作及释放已经封装，里面提供�
 
 MVC结构图
 ---------
-
-![](media/83796110dc5855fc670950a5f5253d08.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/mvc.jpg)
 
 ​										图 MVC结构图
 
@@ -94,7 +97,7 @@ MVC结构图
 
 调用SqlHelper类对数据库进行操作：对Item表的增删改查和对Hero_Table表的查询，例如下图：
 
-![](media/31aae01f21e13590088655995471001f.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/example.jpg)
 
 ​										图 查询例子
 
@@ -102,7 +105,7 @@ MVC结构图
 
 用来返回字符连接串。
 
-![](media/b0e3529644922979315f4a9081a5e458.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/getCon.jpg)
 
 ​										图 DBUtils
 
@@ -157,21 +160,20 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 登录
 ----
 
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件.png](media/4abfa937d8700c487e610b0d43b6edce.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/login.jpg)
 
 ​									图 登录流程图
 
 注册
 ----
 
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件 (1).png](media/ae1d66041a279bf74de948308bafd155.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/register.jpg)
 
 ​									图 注册流程图
 
 树形目录
 --------
-
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件 (2).png](media/68b056d9dc7d6b2533cf7a560637ff75.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/getTreeview.jpg)
 
 ​							图 实现树形目录流程图
 
@@ -182,19 +184,18 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 
 ### 查询
 
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件 (3).png](media/e7df1b4b18ddea88886232dba2b7cc70.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/getList.jpg)
 
 ​									图 查询流程图
 
 ### 添加与修改
-
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件 (4).png](media/2d76977f7b9b1fc88b2f195bd1b3310a.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/addAndInsert.jpg)
 
 ​									图 添加与修改流程图
 
 ### 删除
 
-![C:\\Users\\Sun Yu\\Downloads\\未命名文件 (5).png](media/0de1bc0c3ac5b235bc50ec2c99556ce2.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/delete.jpg)
 
 ​										图 查询流程图
 
@@ -206,7 +207,7 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 
 如图：
 
-![](media/0ac7c147ddf8f0b57e0041da477e55a1.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/main.jpg)
 
 ​											图 首页
 
@@ -215,15 +216,14 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 
 如图：
 
-![](media/5c1e54f3f1fe8ce39f5121dd1541d564.png)
-
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/loginhtml.jpg)
 ​									图 登录页
 
 ### 注册页
 
 如图：
 
-![](media/8522c4695a9d0307485b3c9f5323fa5d.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/registerhtml.jpg)
 
 ​										图 注册页
 
@@ -231,7 +231,7 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 
 如图：
 
-![C:\\Users\\Sun Yu\\Desktop\\2018-06-20_170748.png](media/63ac710a5767b100789cda233b848b90.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/commandhtml.jpg)
 
 ​										图 增删改查页
 
@@ -239,7 +239,7 @@ HTTP请求接口和RESTful架构请求接口，并且提供了全局方法和VUe
 
 如图：
 
-![C:\\Users\\Sun Yu\\Desktop\\2018-06-20_171526.png](media/406a1d634df75d8c6fc4913925874a71.png)
+![image](https://github.com/HotEmotion/LOL_Database/blob/master/imgFloder/detailhtml.jpg)
 
 ​										图 增删改查页
 
