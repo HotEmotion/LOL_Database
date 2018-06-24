@@ -1,0 +1,306 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>英雄联盟资料库</title>
+    <link href="~/css/bootstrap-treeview.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/bootstrap-treeview.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-resource.js"></script>
+    <link href="~/css/public.css" rel="stylesheet" />
+    <script>
+        var heroData = [];
+        var userName = '';
+        function getData(str) {
+            var sUrl;
+            if (str === undefined) {
+                sUrl = '/main/getAllHeroDatas/';
+            } else {
+                sUrl = '/main/getHeroDataByType/?type=' + str;
+            }
+            $.ajax({
+                url: sUrl,
+                cache: false,
+                dataType: "json",
+                success: function (da) {
+                    for (var i = 0; i < da.length; i++) {
+                        heroData.push(da[i])
+                    }
+                },
+                error: function (request, errinfo, errobject) {
+                    alert("连接超时，请重新登录！");
+                    location.href = '/login/index/';
+                }
+            })
+        }
+        $(function () {
+            var vue = new Vue({
+                el: '#content_main',
+                data: {
+                    heroList: [],
+                },
+                methods: {
+                    getAllHeroDatas: function () {
+                        this.heroList = heroData;
+                    },
+                    navigateTo: function (Id) {
+                        window.open('http://localhost:49922/Detail/index/?Id='+Id);
+                    }
+                }
+            });
+            function getTree() {
+                $.ajax({
+                    url: '/main/getTreeView/',
+                    cache: false,
+                    dataType: "json",
+                    success: function (da) {
+                        data1 = da;
+                        $('#tree').treeview({
+                            data: da,
+                            onNodeSelected: function (eve, data) {
+                                heroData = [];
+                                switch (data.text) {
+                                    case '英雄': getData(); break;
+                                    case '战士': getData('战士'); break;
+                                    case '法师': getData('法师'); break;
+                                    case '刺客': getData('刺客'); break;
+                                    case '坦克': getData('坦克'); break;
+                                    case '射手': getData('射手'); break;
+                                    case '辅助': getData('辅助'); break;
+                                    default: getData(data.text);
+                                }
+                                vue.getAllHeroDatas();
+                            }
+                        });
+                    },
+                    error: function (request, errinfo, errobject) {
+                        alert("连接超时，请重新登录！");
+                        location.href = '/login/index/';
+                    }
+                })
+            }
+            getTree();
+            
+            
+            //var heroItem = $('.item_img');
+            //heroItem.mouseover(function (event) {
+            //    var itemLeft = heroItem.offset().left;
+            //    var itemTop = heroItem.offset().top;
+            //    $('.hero_item>div.hero_item_detail').css('visibility', 'visible');
+            //    $('.hero_item>div.hero_item_detail').css('left', event.offsetX);
+            //    $('.hero_item>div.hero_item_detail').css('top', event.offsetY);
+            //});
+
+        });
+    </script>
+    <style>
+
+        #head{
+           width:100%;
+           height:400px;
+           position:relative;
+        }
+        #head_nav {
+            width: 100%;
+            height: 50px;
+            background-color: #0B0B0B;
+        }
+        .nav_mid{
+            width:1200px;
+            height:100%;
+            margin:0 auto;
+            line-height:50px;
+        }
+        .nav_mid h4{
+            float:left;
+            color:white;
+            padding-top:16px;
+        }
+        .nav_mid div{
+            float:right;
+            color:white;
+        }
+        .top_video {
+            width: 1920px;
+            height: 350px;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -960px;
+        }
+        #main{
+            display:flex;
+            width:1200px;
+            height:auto;
+            margin:0 auto;
+            padding:10px 0 30px 0;
+        }
+        #tree{
+            width:260px;
+        }
+        .content{
+            width:940px;
+            padding:0 0 0 30px;
+        }
+        .content_title{
+            width:100%;
+            height:50px;
+            line-height:50px;
+        }
+        #content_main{
+            width:910px;
+            height:auto;
+            transition:all 0.8s;
+            border:1px solid #808080;
+            padding:20px;
+        }
+        .content_main:hover{
+            box-shadow:2px 2px 5px #808080;
+        }
+        .hero_items{
+            display:flex;
+            flex-wrap:wrap;
+        }
+        .hero_items li{
+            position:relative;
+            width:22%;
+            height:auto;
+            margin-right:3.96%;
+            margin-bottom:3.96%;
+            cursor:pointer;
+            border:1px solid #808080;
+            text-align:center;
+        }
+        .hero_items li img{
+            width:100%;
+            padding:2%;
+            
+        }
+        .hero_items li img:hover+.hero_item_detail{
+            visibility:visible;
+        }
+        .hero_items li p{
+            padding:20px 0 20px 0;
+        }
+        .hero_item_detail{
+             position:absolute;
+             right:-510px;
+             top:0;
+             z-index:999;
+             width:500px;
+             padding:20px;
+             background-color:beige;
+             border:1px solid #808080;
+             visibility:hidden;
+        }
+        .detail_top{
+            width:100%;
+            height:200px;
+            padding:10px;
+        }
+        .detail_imgbox{
+            float:left;
+            width:180px;
+            height:180px;
+            padding:5px;
+            border:1px solid #808080;
+        }
+        .detail_imgbox img{
+            width:158px;
+            padding:2px;
+        }
+        .detail_namebox{
+            height:100%;
+            margin-left:20px;
+        }
+        .detail_namebox h3{
+
+        }
+        .hero_item_detail p{
+            font-size:18px;
+            padding-bottom:20px;
+        }
+        .hero_items li:nth-child(4n) {
+            margin-right: 0;
+        }
+        .hero_items li:nth-child(4n) .hero_item_detail{
+            right:200px;
+        }
+        #footer {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            background-color: #0B0B0B;
+            line-height: 100px;
+            color: white;
+        }
+        #footer p{
+            margin-left:30%;
+        }
+        #footer a{
+            margin-left:20%;
+        }
+        .tuichu{
+            float:right;
+            margin-left:30px;
+        }
+    </style>
+</head>
+<body>
+    <header id="head">
+        <div id="head_nav">
+            <div class="nav_mid">
+                <h4>英雄联盟</h4>
+                <a href="/Login/index" class="tuichu" style="color:#C6BF7C">退出</a>
+                <div>亲爱的召唤师<a href="javascript:void(0)" style="color:#C6BF7C">【@Session["userid"]】</a>，欢迎您</div>
+
+            </div>
+        </div>
+        <video class="top_video" autoplay loop >
+            <source src="~/img/back-v23.mp4" type="video/mp4" />
+            <source src="~/img/back-v23.webm" type="video/webm" />
+        </video>
+    </header>
+    <main id="main">
+        <div id="tree"></div>
+        <div class="content">
+            <div class="content_title">英雄资料库</div>
+            <div id="content_main">
+                <ul class="hero_items">
+                    <li class="hero_item" v-for="item in heroList" v-on:click="navigateTo(item.Id)">
+                        <img class="item_img" :src="~/img/+item.Image" alt="Alternate Text" />
+                        <div class="hero_item_detail">
+                            <div class="detail_top">
+                                <div class="detail_imgbox">
+                                    <img :src="~/img/+item.Image" alt="Alternate Text" />
+                                </div>
+                                <div class="detail_namebox">
+                                    <h3>{{item.Type}}</h3>
+                                    <h3>{{item.Name}}</h3>
+                                    <h3>{{item.NickName}}</h3>
+                                    <h4>价格：<span>{{item.Price}}</span></h4>
+                                </div>
+                            </div>
+                            <p>{{item.IContent}}</p>
+                        </div>
+                        <p>{{item.Name}}</p>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer id="footer">
+        <p>Copyright ©2018  我们说的都队 版权所有</p>
+        <a href="#">关于我们</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,296 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>增删改查页</title>
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/vue-resource.js"></script>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/public.css" rel="stylesheet" />
+    <style>
+
+
+        #head {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        #head_nav {
+            width: 100%;
+            height: 50px;
+            background-color: #0B0B0B;
+        }
+
+        .nav_mid {
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+
+            .nav_mid h4 {
+                float: left;
+                color: white;
+                line-height: 50px;
+            }
+
+            .nav_mid div {
+                float: right;
+                color: white;
+            }
+
+        .top_video {
+            width: 1920px;
+            height: 350px;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -960px;
+        }
+
+        #footer {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            background-color: #0B0B0B;
+            line-height: 100px;
+            color: white;
+        }
+        #footer p {
+            margin-left: 30%;
+        }
+
+        #footer a {
+            margin-left: 20%;
+        }
+        #box{
+            width:1200px;
+            height:auto;
+            margin:0 auto;
+        }
+        #modal_form{
+            width:600px;
+            height:800px;
+        }
+    </style>
+    <script>
+        $(function () {
+            function centerModals() {
+                $('.modal').each(function (i) {
+                    var $clone = $(this).clone().css('display', 'block').appendTo('body');
+                    var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                    top = top > 50 ? top : 0;
+                    $clone.remove();
+                    $(this).find('.modal-content').css("margin-top", top - 50);
+                });
+            }
+       
+            var vue = new Vue({
+                el: '#box',
+                data: {
+                    myData: [],
+                    name: '',
+                    nickname: '',
+                    type: '',
+                    price: '',
+                    image: '',
+                    content:'',
+                    nowId:-100,
+                    nowIndex:-100
+                },
+                methods: {
+                    getdata: function () {
+                        var self = this;
+                        Vue.http.get('/Main/getAllHeroDatas/').then(function (res) {
+                            self.myData = res.data;
+                        });
+                    },
+                    addAndUpdate: function () {
+                        var self = this;
+                        if (this.nowId == -100) {
+                            var url = '/Operation/Add?name=' + this.name + '&nickName=' + this.nickname
+                                + '&type=' + this.type + '&price=' + this.price + '&image=' + this.image + '&iContent=' + this.content;                    
+                            Vue.http.get(url).then(function (res) {
+                                if (res.data == '1') {
+                                    self.getdata();
+                                }
+                            });
+                        } else {
+                            var url1 = '/Operation/Update?name=' + this.name + '&nickName=' + this.nickname
+                                + '&type=' + this.type + '&price=' + this.price + '&image=' + this.image + '&iContent=' + this.content + '&id=' + this.nowId;
+                            Vue.http.get(url1).then(function (res) {
+                                if (res.data == '1') {
+                                    self.getdata();
+                                    self.nowId = -100;
+                                }
+                            });
+                        }
+                        this.name = '';
+                        this.nickname = '';
+                        this.type = '';
+                        this.price = '';
+                        this.image = '';
+                        this.content = '';
+                        
+                    },
+                    deleteMsg: function (n) {
+                        var self = this;
+                        if (this.nowIndex == -2) {
+                            this.myData = [];
+                        } else {
+                            Vue.http.get('/Operation/Delete?id=' + self.nowId).then(function (res) {
+                                if (res.data == '1') {
+                                    self.getdata();
+                                    self.id = -100;
+                                }
+                            });
+                        }
+                    },
+                    getDelId: function (id) {
+                        this.nowId = id;
+                    },
+                    getUpId: function (id, name, nickname,content,type,price,image) {
+                        this.nowId = id;
+                        this.name = name;
+                        this.nickname = nickname;
+                        this.content = content;
+                        this.type = type;
+                        this.price = price;
+                        this.image = image;
+                    }
+                }
+
+            });
+            vue.getdata();
+            $('.modal').on('show.bs.modal', centerModals);
+            $(window).on('resize', centerModals);
+        });
+    </script>
+</head>
+<body>
+    <header id="head">
+        <div id="head_nav">
+            <div class="nav_mid">
+                <h4>英雄联盟</h4>
+                <div>亲爱的管理员<a href="javascript:void(0)">【admin】</a>，欢迎您</div>
+            </div>
+        </div>
+        <video class="top_video" autoplay loop>
+            <source src="~/img/back-v23.mp4" type="video/mp4" />
+            <source src="~/img/back-v23.webm" type="video/webm" />
+        </video>
+    </header>
+    <div class="container" id="box">
+        <table class="table table-bordered table-hover">
+            <caption class="h3 text-danger text-center">英雄列表</caption>
+            <tr class="text-danger">
+                <th class="text-center">名称</th>
+                <th class="text-center">别名</th>
+                <th class="text-center col-md-6">介绍</th>
+                <th class="text-center">类型</th>
+                <th class="text-center">价格</th>
+                <th class="text-center">图片</th>
+                <th class="text-center">操作</th>
+            </tr>
+            <tr class="text-center" v-for="(item,index) in myData">
+                <td>{{item.Name}}</td>
+                <td>{{item.NickName}}</td>
+                <td>{{item.IContent}}</td>
+                <td>{{item.Type}}</td>
+                <td>{{item.Price}}</td>
+                <td>{{item.Image}}</td>
+                <td>
+                    <input type="button" value="修改" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_form"
+                           v-on:click="getUpId(item.Id,item.Name,item.NickName,item.IContent,item.Type,item.Price,item.Image)">
+                    <input type="button" value="删除" class="btn btn-primary btn-sm" data-toggle="modal" 
+                           v-on:click="getDelId(item.Id)" data-target="#layer">
+                </td>
+            </tr>
+            <tr v-show="myData.length!=0">
+                <td colspan="7" class="text-center">
+                    <button class="btn btn-danger btn-sm  right" data-toggle="modal" data-target="#modal_form" >添加</button>
+                    <button class="btn btn-danger btn-sm left" data-toggle="modal" data-target="#layer" v-on:click="nowIndex=-2">全部删除</button>
+                </td>
+            </tr>
+            <tr v-show="myData.length==0">
+                <td colspan="7" class="text-center text-muted">
+                    <p>暂无数据...</p>
+                </td>
+            </tr>
+        </table>
+
+
+        <div role="dialog" class="modal fade center-block" id="modal_form">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name">名称：</label>
+                                <input type="text" id="name" class="form-control" placeholder="请输入名称" v-model="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="nickname">别名：</label>
+                                <input type="text" id="nickname" class="form-control" placeholder="请输入别名" v-model="nickname">
+                            </div>
+                            <div class="form-group">
+                                <label for="type">类型：</label>
+                                <input type="text" id="type" class="form-control" placeholder="请输入类型" v-model="type">
+                            </div>
+                            <div class="form-group">
+                                <label for="price">价格：</label>
+                                <input type="text" id="price" class="form-control" placeholder="请输入价格" v-model="price">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">图片：</label>
+                                <input type="text" id="image" class="form-control" placeholder="请输入图片" v-model="image">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">介绍：</label>
+                                <textarea class="form-control" id="content" rows="3" placeholder="请输入介绍" v-model="content"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-body text-right">
+                        <button class="btn btn-sm btn-danger" data-dismiss="modal" v-on:click="addAndUpdate">确定</button>
+                        <button class="btn btn-sm btn-primary" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="dialog" class="modal fade" id="layer" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                        <h4 class="modal-title">确认<span v-show="nowIndex==-2">全部</span>删除吗?</h4>
+                    </div>
+                    <div class="modal-body text-right">
+                        <button class="btn btn-sm btn-danger" data-dismiss="modal" v-on:click="deleteMsg()">确定</button>
+                        <button class="btn btn-sm btn-primary" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <p>Copyright ©2018  我们说的都队 版权所有</p>
+        <a href="#">关于我们</a>
+    </footer>
+</body>
+</html>

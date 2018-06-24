@@ -1,0 +1,12 @@
+D:\ASP.NET\Login_and_register\Model_Data\bin\Debug\Model_Data.dll
+D:\ASP.NET\Login_and_register\Model_Data\bin\Debug\Model_Data.pdb
+D:\ASP.NET\Login_and_register\Model_Data\obj\Debug\Model_Data.csprojResolveAssemblyReference.cache
+D:\ASP.NET\Login_and_register\Model_Data\obj\Debug\Model_Data.csproj.CoreCompileInputs.cache
+D:\ASP.NET\Login_and_register\Model_Data\obj\Debug\Model_Data.dll
+D:\ASP.NET\Login_and_register\Model_Data\obj\Debug\Model_Data.pdb
+D:\ASP.NET\LOL_DataBase\Model_Data\bin\Debug\Model_Data.dll
+D:\ASP.NET\LOL_DataBase\Model_Data\bin\Debug\Model_Data.pdb
+D:\ASP.NET\LOL_DataBase\Model_Data\obj\Debug\Model_Data.csprojResolveAssemblyReference.cache
+D:\ASP.NET\LOL_DataBase\Model_Data\obj\Debug\Model_Data.csproj.CoreCompileInputs.cache
+D:\ASP.NET\LOL_DataBase\Model_Data\obj\Debug\Model_Data.dll
+D:\ASP.NET\LOL_DataBase\Model_Data\obj\Debug\Model_Data.pdb

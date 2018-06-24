@@ -1,0 +1,459 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>英雄详情页</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-resource.js"></script>
+    <script>
+        var url = location.search;
+        var str = url.substr(1);
+        var ItemId = str.split('=')[1];
+
+        window.onload = function () {
+            var vue = new Vue({
+                el: '.Detail_list1',
+                data: {
+                    myData:{},
+                },
+                methods: {
+                    getlist: function () {
+                        var self = this;
+                        Vue.http.get('/Detail/getData/?Id=' + ItemId).then(function (res) {
+                            self.myData = res.data[0];
+                        });
+                    }
+                }
+            });
+            var vue2 = new Vue({
+                el: '.imgBox',
+                data: {
+                    myData: {},
+                },
+                methods: {
+                    getlist: function () {
+                        var self = this;
+                        Vue.http.get('/Detail/getData/?Id=' + ItemId).then(function (res) {
+                            self.myData = res.data[0];
+                        });
+                    }
+                }
+            });
+            var vue3 = new Vue({
+                el: '.video_box',
+                data: {
+                    myData: {},
+                },
+                methods: {
+                    getlist: function () {
+                        var self = this;
+                        Vue.http.get('/Detail/getData/?Id=' + ItemId).then(function (res) {
+                            self.myData = res.data[0];
+                        });
+                    }
+                }
+            });
+            var vue4 = new Vue({
+                el: '.bgStory_Content',
+                data: {
+                    myData: {},
+                },
+                methods: {
+                    getlist: function () {
+                        var self = this;
+                        Vue.http.get('/Detail/getData/?Id=' + ItemId).then(function (res) {
+                            self.myData = res.data[0];
+                        });
+                    }
+                }
+            });
+            var vue5 = new Vue({
+                el: '.Skillbox',
+                data: {
+                    myData: {},
+                },
+                methods: {
+                    getlist: function () {
+                        var self = this;
+                        Vue.http.get('/Detail/getData/?Id=' + ItemId).then(function (res) {
+                            self.myData = res.data[0];
+                        });
+                    }
+                }
+            });
+            vue.getlist(); 
+            //vue1.getlist(); 
+            vue2.getlist(); 
+            vue3.getlist(); 
+            vue4.getlist(); 
+            vue5.getlist(); 
+        }
+    </script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        ul {
+            margin:0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        h4,h1,h2,h3,h5{
+            margin:0
+        }
+        a{
+            text-decoration:none;
+        }
+        p{
+            margin:0
+        }
+        #head {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+        #head_nav {
+            width: 100%;
+            height: 50px;
+            background-color: #0B0B0B;
+        }
+        .nav_mid {
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+        .nav_mid h4 {
+            float: left;
+            color: white;
+        }
+
+        .nav_mid div {
+            float: right;
+            color: white;
+        }
+
+        .top_video {
+            width: 1920px;
+            height: 350px;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -960px;
+        }
+        #footer {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            background-color: #0B0B0B;
+            line-height: 100px;
+            color: white;
+        }
+        #footer p {
+           padding-bottom:100px;
+            margin-left: 30%;
+        }
+
+        #footer a {
+            margin-left: 20%;
+        }
+        #main{
+            width:1200px;
+            height:auto;
+            margin:0 auto;
+            padding:20px 0;
+        }
+        .main_title{
+            width:100%;
+            height:60px;
+            line-height:60px;
+        }
+        .main_title h2{
+            color:#338C7A;
+        }
+        .imgBox{
+            position:relative;
+            width:100%;
+            height:auto;
+            color:white;
+        }
+        .imgBox img{
+            width:100%;
+        }
+        .imgBox h2{
+            position:absolute;
+            top:40px;
+            left:20px;
+        }
+        .imgBox h1{
+            position:absolute;
+            top:70px;
+            left:20px;
+        }
+        .imgBox div{
+            position:absolute;
+            top:150px;
+            left:20px;
+            width:70px;
+            height:40px;
+            border-radius:4px;
+            background-color:aqua;
+            color:white;
+            text-align:center;
+            line-height:40px;
+        }
+        .bgStory {
+            width: 100%;
+            transition: all 0.8s;
+        }
+        .bgStory_title {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+        .bgStory_title h2{
+            color:#338C7A;
+        }
+        .bgStory_Content {
+            width: 1160px;
+            padding: 20px;
+            border: 1px solid #808080;
+            background-color: #f8f8f8;
+            transition:all 0.8s;
+            cursor: pointer;
+        }
+        .Skill{
+            width:100%;
+        }
+        .Skill_Title {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+        .Skill_Title h2{
+            color:#338C7A;
+        }
+        .Skill li {
+            width: 1160px;
+            height: 100px;
+            border: 1px solid #808080;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor:pointer;
+            background-color: #f8f8f8;
+            transition: all 0.8s;
+        }
+        .Skill li img{
+            float:left;
+            width:96px;
+            padding:2px;
+            cursor:pointer;
+        }
+        .Skill li .Skill_Content{
+            float:left;
+            width:1020px;
+            height:100px;
+            padding:2px;
+            margin-left:30px;
+        }
+        .Skill li .Skill_Content .Skill_top{
+            width:auto;
+            height:30px;
+        }
+        .Skill li .Skill_Content .Skill_top h2{
+            float:left;
+            
+        }
+        .Skill li .Skill_Content .Skill_top h3{
+            float:left;
+            margin-left:20px;
+            color:#999;
+        }
+        .Skill li .Skill_Content p{
+            width:auto;
+            height:50px;
+            padding-top:5px;
+        }
+        .main_detail{
+            width:100%;
+            height:562px;
+        }
+        .video_box{
+            float:left;
+            width:610px;
+            height:560px
+        }
+        .detail_Content {
+            float: left;
+            width: 570px;
+            height: 560px;
+            margin-left:20px;
+            
+        }
+        .Detail_Title{
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+        .Detail_list {
+            width: 488px;
+            height: 418px;
+            padding: 40px;
+            cursor: pointer;
+            border: 1px solid #808080;
+            background-color: #f8f8f8;
+            transition: all 0.8s;
+        }
+        .Detail_list ul{
+            display:flex;
+            flex-wrap:wrap;
+        }
+        .Detail_list li{
+            display:flex;
+            width:244px;
+            height:30px;
+            border-bottom:1px solid #808080;
+            margin-bottom:20px;
+            font-size:14px;
+            line-height:30px;
+        }
+        .Detail_list li div{
+            width:70px;
+            text-align:right;
+        }
+        .Detail_Title h2 {
+            color: #338C7A;
+        }
+        .bgStory_Content:hover, .Detail_list:hover, .Skill li:hover{
+            box-shadow:2px 2px 5px #808080;
+        }
+    </style>
+</head>
+<body>
+    <header id="head">
+        <div id="head_nav">
+            <div class="nav_mid">
+                <h4>英雄联盟</h4>
+                <div>亲爱的召唤师<a href="javascript:void(0)"></a>，欢迎您</div>
+            </div>
+        </div>
+        <video class="top_video" autoplay loop>
+            <source src="~/img/back-v23.mp4" type="video/mp4" />
+            <source src="~/img/back-v23.webm" type="video/webm" />
+        </video>
+    </header>
+        <main id="main">
+            <div class="main_title">
+                <h2>英雄详情</h2>
+            </div>
+            <div class="imgBox">
+                <img :src="~/img/+myData.Image" alt="Alternate Text" />
+                <h2>{{myData.Name}}</h2>
+                <h1>{{myData.NickName}}</h1>
+                <div>{{myData.Type}}</div>
+            </div>
+            <div class="main_detail">
+                <div class="video_box">
+                    <div class="Detail_Title"><h2>英雄视频介绍</h2></div>
+                    <embed :src="myData.VedioUrl" wmode="transparent" allowFullScreen="true" quality="high" height="498" width="610" align="middle" allowScriptAccess="always"  type="application/x-shockwave-flash">	</embed>
+                </div>
+                <div class="detail_Content">
+                    <div class="Detail_Title"><h2>英雄属性</h2></div>
+                    <div class="Detail_list">
+                        <ul class="Detail_list1">
+                            <li><div>国服售价：</div><span>{{myData.Price}}</span></li>
+                            <li><div>移动速度：</div><span>{{myData.MoveSpeed}}</span></li>
+                            <li><div>英雄标签：</div><span>{{myData.Tag}}</span></li>
+                            <li><div>攻击范围：</div><span>{{myData.Range}}</span></li>
+                            <li><div>生命值：</div><span>{{myData.Blood}}</span></li>
+                            <li><div>攻击力：</div><span>{{myData.AttackPower}}</span></li>
+                            <li><div>生命回复：</div><span>{{myData.BloodReturn}}</span></li>
+                            <li><div>攻击速度：</div><span>{{myData.AttackSpeed}}</span></li>
+                            <li><div>魔法值：</div><span>{{myData.MagicPoint}}</span></li>
+                            <li><div>护甲：</div><span>{{myData.Armor}}</span></li>
+                            <li><div>魔法回复：</div><span>{{myData.MagicReply}}</span></li>
+                            <li><div>魔法抗性：</div><span>{{myData.MagicResistance}}</span></li>
+                            <li><div>暴击伤害：</div><span>{{myData.CriticalDamage}}</span></li>
+                            <li><div>魔法减免：</div><span>{{myData.MagicRemission}}</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bgStory">
+                <div class="bgStory_title"><h2>背景故事</h2></div>
+                <div class="bgStory_Content">
+                    <p>{{myData.Story}}</p>
+                </div>
+            </div>
+            <div class="Skill">
+                <div class="Skill_Title"><h2>技能介绍</h2></div>
+                <ul class="Skillbox">
+                    <li>
+                        <img :src="~/img/+myData.SkillImage1" alt="Alternate Text" />
+                        <div class="Skill_Content">
+                            <div class="Skill_top">
+                                <h2>{{myData.SkillName1}}</h2>
+                                <h3>被动技能</h3>
+                            </div>
+                            <p>{{myData.SkillContent1}}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img :src="~/img/+myData.SkillImage2" alt="Alternate Text" />
+                        <div class="Skill_Content">
+                            <div class="Skill_top">
+                                <h2>{{myData.SkillName2}}</h2>
+                                <h3>快捷键：Q</h3>
+                            </div>
+                            <p>{{myData.SkillContent2}}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img :src="~/img/+myData.SkillImage3" alt="Alternate Text" />
+                        <div class="Skill_Content">
+                            <div class="Skill_top">
+                                <h2>{{myData.SkillName3}}</h2>
+                                <h3>快捷键：W</h3>
+                            </div>
+                            <p>{{myData.SkillContent3}}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img :src="~/img/+myData.SkillImage4" alt="Alternate Text" />
+                        <div class="Skill_Content">
+                            <div class="Skill_top">
+                                <h2>{{myData.SkillName4}}</h2>
+                                <h3>快捷键：E</h3>
+                            </div>
+                            <p>{{myData.SkillContent4}}</p>
+                        </div>
+                    </li>
+                    <li>
+                        <img :src="~/img/+myData.SkillImage5" alt="Alternate Text" />
+                        <div class="Skill_Content">
+                            <div class="Skill_top">
+                                <h2>{{myData.SkillName5}}</h2>
+                                <h3>快捷键：R</h3>
+                            </div>
+                            <p>{{myData.SkillContent5}}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    <footer id="footer">
+        <p>Copyright ©2018  我们说的都队 版权所有</p>
+        <a href="#">关于我们</a>
+    </footer>
+</body>
+</html>

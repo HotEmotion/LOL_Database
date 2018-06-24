@@ -1,0 +1,60 @@
+/*
+* @Author: Sun Yu
+* @Date:   2018-02-03 14:47:31
+* @Last Modified by:   Sun Yu
+* @Last Modified time: 2018-03-25 11:15:47
+*/
+h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+body{
+	margin: 0;
+}
+i{
+	font-style: normal;
+}
+span{
+	margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #C6BF7C;
+}
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+p{
+	margin: 0;
+}
+img{
+	padding: 0;
+	margin: 0;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    margin: 0
+}

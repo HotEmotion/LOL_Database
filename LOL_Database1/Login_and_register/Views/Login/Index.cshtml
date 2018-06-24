@@ -1,0 +1,217 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>	学生登录</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" href="css/public.css">
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="../../Scripts/easyui/jquery.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <link href="../../Scripts/easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/public.css" rel="stylesheet" />
+    <style>
+        #main{
+            position:relative;
+            width:100%;
+        }
+        .video{
+            width:100%;
+        }
+        .login {
+            width: 500px;
+            height: 330px;
+            border-radius: 10px;
+            padding-top: 30px;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            color: #C6BF7C;
+            border: 2px solid #C6BF7C;
+            visibility: hidden
+        }
+
+        .item {
+            width: 460px;
+            height: 46px;
+            margin: 0 auto;
+        }
+
+        .item_left {
+            width: 100px;
+            height: 100%;
+            line-height: 46px;
+            float: left;
+            font-size: 22px;
+        }
+
+        .inp {
+            width: 350px;
+            height: 36px;
+            margin-top: 2px;
+            float: left;
+            border: 2px solid #C6BF7C;
+            background-color:rgba(255,255,255,0.5);
+            color:black;
+        }
+        .btn {
+            width: 360px;
+            height: 34px;
+            margin-left: 80px;
+            margin-top: 20px;
+            background-color: #6384B1;
+            text-align: center;
+            font-size: 22px;
+            border: none;
+            color:white;
+            border: 2px solid #D5F172;
+            background-color: #50662C
+        }
+        .inp1 {
+            width: 200px;
+            border: 2px solid #C6BF7C
+        }
+
+        .yanzheng {
+            width: 150px;
+            height: 40px;
+            margin-top:3px;
+        }
+
+        .item2 {
+            padding-left: 180px;
+            margin-top: 10px;
+            
+        }
+
+        .a_register {
+            margin-left: 20px;
+            color: #C6BF7C;
+        }
+        .a_forget {
+            color: #C6BF7C;
+        }
+        #head {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        #head_nav {
+            width: 100%;
+            height: 50px;
+            background-color: #0B0B0B;
+        }
+
+        .nav_mid {
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+
+        .nav_mid h4 {
+            float: left;
+            color: white;
+            margin:0;
+            line-height: 50px;
+        }
+
+        .nav_mid div {
+            float: right;
+            color: white;
+        }
+        .nav_mid a {
+            color: #C6BF7C;
+            margin-left:2px;
+        }
+        .slogan {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top:100px;
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="head_nav">
+        <div class="nav_mid">
+            <h4>英雄联盟</h4>
+            <div>亲爱的召唤师，欢迎<a href="javascript:void(0)" onclick="login()">登录</a></div>
+        </div>
+    </div>
+    <div id="main">
+
+        <video  class="video" autoplay loop>
+            <source src="~/img/movie.mp4" type="video/mp4" / >
+        </video>
+        <img src="~/img/slogan.png" alt="Alternate Text" class="slogan"/>
+        <form method="post" id="formLogin">
+            <div class="login">
+                <div class="item">
+                    <div class="item_left">角 色：</div>
+                    <select id="choose" style="width:350px;height:36px;border: 2px solid #C6BF7C;background-color:rgba(255,255,255,0.5);">
+                        <option value="user">召唤师</option>
+                        <option value="manager">管理员</option>
+                    </select>
+                </div>
+                <div class="item item1">
+                    <div class="item_left">用户名：</div>
+                    <input type="text" class="inp" id="UserName" placeholder="请输入您的用户名" name="UserName">
+                </div>
+                <div class="item item1">
+                    <div class="item_left">密 码：</div>
+                    <input type="password" class="inp" id="UserPwd" placeholder="请输入您的密码" name="UserPwd">
+                </div>
+                <div class="item item1">
+                    <div class="item_left">验证码：</div>
+                    <input type="text" class="inp inp1" id="yanzheng">
+                    <img src="~/img/yanzhneg.jpg" alt="" class="yanzheng">
+                </div>
+                <input type="button" class="btn" value="登录" id="btnLogint" onclick="formLogin()">
+                <div class="item item2">
+                    <a href="" class="a_forget">忘记密码</a>
+                    <a href="/register" class="a_register">注册</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+    <script type="text/javascript" charset="utf-8">
+        function formLogin() {
+            if ($('#yanzheng').val() == '7364') {
+                if ($('#choose').val() == 'manager') {
+                    if ($('#UserName').val() == 'admin' && $('#UserPwd').val() == '123456') {
+                        location.href = "/Operation/index/";
+                    }
+                } else {
+                    $('#formLogin').form('submit', {
+                        url: '/Login/Login/',
+                        success: function (pdata) {
+                            if (pdata == "1")
+                                location.href = "/main/index/";
+                            else
+                                alert("用户名或密码错误！");
+                        }
+                    });
+                }
+            } else {
+                alert("验证码错误，请重新输入！");
+            }
+        }
+        function login() {          
+            $('.login').css('visibility','visible')
+        }
+    </script>
+</body>
+</html>

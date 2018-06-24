@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOL_Database", "Login_and_register\LOL_Database.csproj", "{267B80DB-F86D-460F-BCC9-DCEF01DCCFC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model_Data", "Model_Data\Model_Data.csproj", "{DBBD5506-A7D5-4E8A-BA7D-4ED9272A1685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{267B80DB-F86D-460F-BCC9-DCEF01DCCFC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{267B80DB-F86D-460F-BCC9-DCEF01DCCFC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{267B80DB-F86D-460F-BCC9-DCEF01DCCFC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{267B80DB-F86D-460F-BCC9-DCEF01DCCFC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBD5506-A7D5-4E8A-BA7D-4ED9272A1685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBD5506-A7D5-4E8A-BA7D-4ED9272A1685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBD5506-A7D5-4E8A-BA7D-4ED9272A1685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBD5506-A7D5-4E8A-BA7D-4ED9272A1685}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EAA875C8-A8B8-4C19-8067-AB314F6410D5}
+	EndGlobalSection
+EndGlobal

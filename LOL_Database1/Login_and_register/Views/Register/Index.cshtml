@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = null;
+}
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script src="../../Scripts/easyui/jquery.min.js" type="text/javascript"></script>
+<script src="../../Scripts/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="../../Scripts/easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+<link href="../../Scripts/easyui/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+<link href="/css/div.css" rel="stylesheet" type="text/css" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" href="~/css/public.css">
+    <link rel="stylesheet" href="~/css/register.css">
+    <style>
+
+        .video{
+            width:100%;
+            height:auto;
+        }
+        #head_nav {
+            width: 100%;
+            height: 50px;
+            background-color: #0B0B0B;
+        }
+
+        .nav_mid {
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+        .nav_mid h4 {
+            margin:0;
+             float: left;
+            color: white;
+        }
+
+        .nav_mid div {
+            float: right;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head_nav">
+        <div class="nav_mid">
+            <h4>英雄联盟</h4>
+            <div>亲爱的召唤师，欢迎您</div>
+        </div>
+    </div>
+    <main id="container">
+        <video class="video" autoplay loop>
+            <source src="~/img/movie.mp4" type="video/mp4" / >
+        </video>
+        <div class="main">
+            <div class="main_left">
+                <div class="rongqi">
+                    <h1>英雄</h1>
+                    <h2>一起来超越！</h2>
+                </div>
+            </div>
+            <div class="main_right">
+                <div class="cotent">
+                    <h1>用户注册</h1>
+                    <form method="post" id="formRegister">
+                        <div class="item">
+                            <div>&#xe62f;</div>
+                            <input type="text" class="inp" placeholder="用户名" name="UserName" id="UserName">
+                        </div>
+                        <div class="item">
+                            <div>&#xe68b;</div>
+                            <input type="text" class="inp" placeholder="邮箱" name="UserEmail" id="UserEmai">
+                        </div>
+                        <div class="item">
+                            <div>&#xe652;</div>
+                            <input type="password" class="inp" placeholder="密码" name="UserPwd" id="UserPwd">
+                        </div>
+                        <div class="item">
+                            <div>&#xe683;</div>
+                            <input type="password" class="inp" placeholder="确认密码" name="UserPwd2" id="UserPwd2" onchange="Yanzheng()">
+                        </div>
+                        <input type="button" class="btn" value="注 册" onclick="formRegister()">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" charset="utf-8">
+        function Yanzheng() {
+            if ($('#UserPwd').val() != $('#UserPwd2').val()) {
+                alert("两次输入的密码不一样,请重新输入！")
+                $('#UserPwd').val() = null;
+                $('#UserPwd').val() = null;
+            }
+        }
+        function formRegister() {
+            $('#formRegister').form('submit', {
+                url: '/Register/Register/',
+                success: function (pdata) {
+                    if (pdata == "1") {
+                        alert("注册成功！");
+                        location.href = "/Login";
+                    }
+                    else
+                        alert("注册失败！");
+                }
+            })
+        }
+    </script>
+</body>
+</html>
